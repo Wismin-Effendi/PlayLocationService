@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First View Controller-->
         <scene sceneID="Qj3-V6-aiY">
             <objects>
-                <viewController id="Lgh-2D-6gs" sceneMemberID="viewController">
+                <viewController id="Lgh-2D-6gs" customClass="FirstViewController" customModule="PlayLocationService" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="irj-yJ-hur"/>
                         <viewControllerLayoutGuide type="bottom" id="i9d-RJ-X6R"/>
@@ -29,26 +29,72 @@
                                 </constraints>
                                 <state key="normal" title="Click to start"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="SelectLocation" id="UwL-5o-5o4"/>
+                                    <segue destination="BTR-x0-2sf" kind="show" id="Z51-qn-NjS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qN8-hG-Mtt">
+                                <rect key="frame" x="10" y="256" width="355" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="llf-Xv-Adp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1rg-cY-Kd3" firstAttribute="top" secondItem="qN8-hG-Mtt" secondAttribute="bottom" constant="10" id="RAD-jr-QI3"/>
                             <constraint firstItem="1rg-cY-Kd3" firstAttribute="centerY" secondItem="7TJ-hR-NYJ" secondAttribute="centerY" id="Uzt-GP-6hJ"/>
+                            <constraint firstItem="qN8-hG-Mtt" firstAttribute="leading" secondItem="7TJ-hR-NYJ" secondAttribute="leading" constant="10" id="h19-Lp-5iM"/>
                             <constraint firstItem="1rg-cY-Kd3" firstAttribute="centerX" secondItem="7TJ-hR-NYJ" secondAttribute="centerX" id="jps-Hp-c8M"/>
+                            <constraint firstAttribute="trailing" secondItem="qN8-hG-Mtt" secondAttribute="trailing" constant="10" id="obB-qB-zbf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YOQ-iY-s8I"/>
+                    <connections>
+                        <outlet property="locationLabel" destination="qN8-hG-Mtt" id="Lgd-cM-zNR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w8j-2O-Ot0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="557.60000000000002" y="122.78860569715144"/>
+            <point key="canvasLocation" x="805.60000000000002" y="122.78860569715144"/>
         </scene>
-        <!--Choose New Location-->
+        <!--Location List View Controller-->
+        <scene sceneID="VbQ-uB-rSk">
+            <objects>
+                <tableViewController id="BTR-x0-2sf" customClass="LocationListViewController" customModule="PlayLocationService" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vHc-fk-aDH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jmn-WY-PBt">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jmn-WY-PBt" id="0PD-AP-9oT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BTR-x0-2sf" id="pyj-aX-qOL"/>
+                            <outlet property="delegate" destination="BTR-x0-2sf" id="3wv-RG-DXJ"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="AddNewLocation" id="B2I-oD-ULt"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xbt-hd-H9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1634" y="123"/>
+        </scene>
+        <!--Add New Location-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PlayLocationService" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="PlayLocationService" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -91,7 +137,7 @@
                             <constraint firstItem="a7q-Dq-ccn" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="t57-A9-nD9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Choose New Location" id="2ec-ZY-eZ8">
+                    <navigationItem key="navigationItem" title="Add New Location" id="2ec-ZY-eZ8">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="5sg-ys-ISJ">
                             <connections>
                                 <action selector="doneButtonTapped:" destination="BYZ-38-t0r" id="SBY-FM-X9m"/>
@@ -105,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1391" y="123"/>
+            <point key="canvasLocation" x="2538" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DsB-iH-fPM">

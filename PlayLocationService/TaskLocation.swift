@@ -24,6 +24,12 @@ class TaskLocation: NSObject, NSCoding, MKAnnotation {
         self.coordinate = coordinate
     }
     
+    init(mapAnnotation: MKAnnotation) {
+        self.title = mapAnnotation.title!
+        self.locationName = mapAnnotation.subtitle!!
+        self.coordinate = mapAnnotation.coordinate
+    }
+    
     // MARK: - NSCoding protocol
     // So that we could save this object as transformable in Core Data
     required init?(coder aDecoder: NSCoder) {

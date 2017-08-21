@@ -15,9 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var locationManager: CLLocationManager?
+    
+    lazy var coreDataStack = CoreDataStack.shared(modelName: ModelName.PlayLocationService)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let nc = window?.rootViewController as? UINavigationController,
+            let firstVC = nc.topViewController as? FirstViewController {
+            
+            firstVC.coreDataStack = coreDataStack
+        }
+        
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         

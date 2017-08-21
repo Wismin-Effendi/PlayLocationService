@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  PlayLocationService
 //
 //  Created by Wismin Effendi on 8/19/17.
@@ -11,12 +11,12 @@ import CoreLocation
 import MapKit
 import os.log
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchText: UITextField!
 
-    
+    var coreDataStack: CoreDataStack!
     
     var matchingItems: [MKMapItem] = [MKMapItem]()
     
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Search TextField
-extension ViewController {
+extension MapViewController {
     
     func performSearch() {
         matchingItems.removeAll()
@@ -113,7 +113,7 @@ extension ViewController {
 }
 
 // MARK: - MKMapViewDelegate 
-extension ViewController: MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "pin"
         var view: MKPinAnnotationView
@@ -133,15 +133,15 @@ extension ViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let location = view.annotation!.coordinate
-        showOptionToChoose(location: location)
+        let taskLocation = TaskLocation(mapAnnotation: view.annotation!)
+        showOptionToChoose(taskLocation: taskLocation)
     }
     
-    func showOptionToChoose(location: CLLocationCoordinate2D) {
+    func showOptionToChoose(taskLocation: TaskLocation) {
         let alertController = UIAlertController(title: "Choose Location", message: "Choose this location?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            print("We have selected this location: \(location)")
+            print("We have selected this location: \(taskLocation.coordinate)")
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
@@ -153,7 +153,7 @@ extension ViewController: MKMapViewDelegate {
 
 
 // MARK: - LocationManager Delegate 
-extension ViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         os_log("Error getting user location: %s", error.localizedDescription)
     }
