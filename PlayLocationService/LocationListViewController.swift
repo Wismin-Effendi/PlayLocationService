@@ -8,9 +8,18 @@
 
 import UIKit
 
-class LocationListViewController: UITableViewController {
+class LocationListViewController: UITableViewController, TaskLocationDelegate {
 
+    var taskLocation = TaskLocation() {
+        didSet {
+            print("We got \(taskLocation.title)")
+            delegate?.taskLocation = taskLocation
+        }
+    }
+    
     var coreDataStack: CoreDataStack!
+    
+    var delegate: TaskLocationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +41,7 @@ class LocationListViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.AddNewLocation {
             let vc = segue.destination as! MapViewController
-            vc.coreDataStack = coreDataStack
+            vc.delegate = self 
         }
     }
 

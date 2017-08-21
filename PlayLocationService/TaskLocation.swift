@@ -30,6 +30,10 @@ class TaskLocation: NSObject, NSCoding, MKAnnotation {
         self.coordinate = mapAnnotation.coordinate
     }
     
+    convenience override init() {
+        self.init(title: "", locationName: "", coordinate: CLLocationCoordinate2D())
+    }
+    
     // MARK: - NSCoding protocol
     // So that we could save this object as transformable in Core Data
     required init?(coder aDecoder: NSCoder) {

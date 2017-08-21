@@ -15,4 +15,9 @@ struct ModelName {
 
 struct SegueIdentifier {
     public static let AddNewLocation = "AddNewLocation"
+    public static let LocationList = "LocationList"
+}
+
+struct UserDefaultKey {
+    public static let TaskLocation = "TaskLocation"
 }

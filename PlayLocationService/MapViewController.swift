@@ -11,18 +11,21 @@ import CoreLocation
 import MapKit
 import os.log
 
+protocol TaskLocationDelegate {
+    var taskLocation: TaskLocation { get set }
+}
+
 class MapViewController: UIViewController {
 
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchText: UITextField!
 
     var coreDataStack: CoreDataStack!
-    
+    var delegate: TaskLocationDelegate?
     var matchingItems: [MKMapItem] = [MKMapItem]()
-    
+        
     let locationManager = CLLocationManager()
-    let localSearchCompleter = MKLocalSearchCompleter()
-    
     var currentLocationCoordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
@@ -140,7 +143,8 @@ extension MapViewController: MKMapViewDelegate {
     func showOptionToChoose(taskLocation: TaskLocation) {
         let alertController = UIAlertController(title: "Choose Location", message: "Choose this location?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        let okAction = UIAlertAction(title: "OK", style: .default) {[unowned self] (action) in
+            self.delegate?.taskLocation = taskLocation
             print("We have selected this location: \(taskLocation.coordinate)")
         }
         alertController.addAction(cancelAction)
@@ -148,7 +152,6 @@ extension MapViewController: MKMapViewDelegate {
         
         present(alertController, animated: true, completion: nil)
     }
-    
 }
 
 
@@ -167,8 +170,6 @@ extension MapViewController: CLLocationManagerDelegate {
         print("Current location: ", locationCoordinate.latitude, locationCoordinate.longitude)
         let region = makeRegion(center: locationCoordinate)
         mapView.region = region
-        localSearchCompleter.queryFragment = "sams"
-        
     }
     
     // MARK: - Local Search helper
