@@ -103,6 +103,7 @@ class LocationListViewController: UITableViewController, TaskLocationDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let locationAnnotation = fetchedResultsController.object(at: indexPath)
         taskLocation = locationAnnotation.annotation as! TaskLocation
+        navigationController?.popViewController(animated: true)
     }
 }
 
