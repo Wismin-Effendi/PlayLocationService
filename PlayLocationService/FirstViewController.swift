@@ -41,6 +41,7 @@ class FirstViewController: UIViewController, TaskLocationDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.LocationList {
             let vc = segue.destination as! LocationListViewController
+            vc.coreDataStack = coreDataStack
             vc.delegate = self 
         }
     }

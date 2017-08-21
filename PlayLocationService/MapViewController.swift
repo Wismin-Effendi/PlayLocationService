@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 import MapKit
 import os.log
 
@@ -145,12 +146,22 @@ extension MapViewController: MKMapViewDelegate {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let okAction = UIAlertAction(title: "OK", style: .default) {[unowned self] (action) in
             self.delegate?.taskLocation = taskLocation
+            self.saveToCoreData(taskLocation: taskLocation)
             print("We have selected this location: \(taskLocation.coordinate)")
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func saveToCoreData(taskLocation: TaskLocation) {
+        let locationAnnotation = LocationAnnotation(context: coreDataStack.managedContext)
+        locationAnnotation.localUpdate = NSDate()
+        locationAnnotation.identifier = UUID().uuidString
+        locationAnnotation.annotation = taskLocation
+        
+        coreDataStack.saveContext()
     }
 }
 

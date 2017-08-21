@@ -18,6 +18,6 @@ struct SegueIdentifier {
     public static let LocationList = "LocationList"
 }
 
-struct UserDefaultKey {
-    public static let TaskLocation = "TaskLocation"
+struct CellIdentifier {
+    public static let LocationName = "LocationName"
 }
