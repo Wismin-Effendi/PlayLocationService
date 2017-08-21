@@ -16,6 +16,7 @@
 		3753BB2E1F48AC2800EBD7CD /* PlayLocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753BB2D1F48AC2800EBD7CD /* PlayLocationServiceTests.swift */; };
 		3753BB391F48AC2800EBD7CD /* PlayLocationServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753BB381F48AC2800EBD7CD /* PlayLocationServiceUITests.swift */; };
 		3753BB481F48AC5C00EBD7CD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3753BB471F48AC5C00EBD7CD /* CoreLocation.framework */; };
+		3753BB4A1F4A8EAE00EBD7CD /* TaskLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753BB491F4A8EAE00EBD7CD /* TaskLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		3753BB381F48AC2800EBD7CD /* PlayLocationServiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayLocationServiceUITests.swift; sourceTree = "<group>"; };
 		3753BB3A1F48AC2800EBD7CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3753BB471F48AC5C00EBD7CD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3753BB491F4A8EAE00EBD7CD /* TaskLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				3753BB211F48AC2800EBD7CD /* LaunchScreen.storyboard */,
 				3753BB241F48AC2800EBD7CD /* Info.plist */,
 				3753BB1C1F48AC2800EBD7CD /* PlayLocationService.xcdatamodeld */,
+				3753BB491F4A8EAE00EBD7CD /* TaskLocation.swift */,
 			);
 			path = PlayLocationService;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3753BB1E1F48AC2800EBD7CD /* PlayLocationService.xcdatamodeld in Sources */,
+				3753BB4A1F4A8EAE00EBD7CD /* TaskLocation.swift in Sources */,
 				3753BB181F48AC2800EBD7CD /* ViewController.swift in Sources */,
 				3753BB161F48AC2800EBD7CD /* AppDelegate.swift in Sources */,
 			);

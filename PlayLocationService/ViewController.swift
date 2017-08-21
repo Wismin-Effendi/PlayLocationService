@@ -56,18 +56,12 @@ class ViewController: UIViewController {
         locationManager.requestLocation()
     }
     
-    fileprivate func setupLocalSearchCompleter(region: MKCoordinateRegion) {
-        localSearchCompleter.delegate = self
-        localSearchCompleter.region = region
-        localSearchCompleter.filterType = .locationsAndQueries
-    }
 }
 
 // MARK: - Search TextField
 extension ViewController {
     
     func performSearch() {
-        
         matchingItems.removeAll()
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchText.text
@@ -75,32 +69,46 @@ extension ViewController {
         
         let search = MKLocalSearch(request: request)
         
-        search.start { (response, error) in
-            
+        search.start {[weak self] (response, error) in
+            guard let strongSelf = self else { return }
             if error != nil {
                 print("Error occured in search: \(error!.localizedDescription)")
             } else if response!.mapItems.count == 0 {
                 print("No matches found")
             } else {
                 print("Matches found")
+                let number = response!.mapItems.count
+                let title: String!
+                if number == 1 {
+                    title = "\(number) location found"
+                } else {
+                    title = "\(number) locations found"
+                }
+                strongSelf.showAlert(title: title, message: "")
                 
                 for item in response!.mapItems {
                     print("Name = \(item.name)")
                     print("Phone = \(item.phoneNumber)")
                     print("Address = \(item.placemark)")
                     
-                    self.matchingItems.append(item as MKMapItem)
-                    print("Matching items = \(self.matchingItems.count)")
+                    strongSelf.matchingItems.append(item as MKMapItem)
+                    print("Matching items = \(strongSelf.matchingItems.count)")
                     
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = item.placemark.coordinate
                     annotation.title = item.name
                     annotation.subtitle = item.placemark.title
-                    self.mapView.addAnnotation(annotation)
+                    strongSelf.mapView.addAnnotation(annotation)
                 }
             }
         }
-        
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -115,7 +123,7 @@ extension ViewController: MKMapViewDelegate {
         } else {
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             if annotation.title! == "My Location" {
-                view.pinTintColor = MKPinAnnotationView.greenPinColor()
+                view.pinTintColor = MKPinAnnotationView.purplePinColor()
             }
             view.canShowCallout = true
             view.animatesDrop = true
@@ -158,47 +166,17 @@ extension ViewController: CLLocationManagerDelegate {
         currentLocationCoordinate = locationCoordinate
         print("Current location: ", locationCoordinate.latitude, locationCoordinate.longitude)
         let region = makeRegion(center: locationCoordinate)
-        setupLocalSearchCompleter(region: region)
         mapView.region = region
         localSearchCompleter.queryFragment = "sams"
         
     }
     
     // MARK: - Local Search helper
-    private func makeRegion(center: CLLocationCoordinate2D, milesRadius: Int = 20) -> MKCoordinateRegion {
-        let delta:Double = 2.0 * Double(milesRadius)/69.0 * 0.1
-        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
-        let region = MKCoordinateRegion(center: center, span: span)
+    private func makeRegion(center: CLLocationCoordinate2D, milesRadius: Double = 10) -> MKCoordinateRegion {
+        let distanceInMeter: Double = 2.0 * milesRadius * 1609.344
+        let region = MKCoordinateRegionMakeWithDistance(center, distanceInMeter, distanceInMeter)
         return region
     }
-    
-    private func localSearch(region: MKCoordinateRegion) {
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = "sam's club"
-        request.region = region
-        
-        let search = MKLocalSearch(request: request)
-        search.start { (response: MKLocalSearchResponse?, error:Error?) in
-            //
-        }
-    }
+
 }
 
-
-// MARK: - MKLocalSearchCompleterDelegate 
-extension ViewController: MKLocalSearchCompleterDelegate {
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        os_log("Error getting search completer result: %s", error.localizedDescription)
-    }
-    
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        let results = completer.results
-        print("Completer result: ")
-        for result in results {
-            print("\(result.title)")
-            print("\(result.subtitle)")
-            print("---------")
-        }
-        
-    }
-}
