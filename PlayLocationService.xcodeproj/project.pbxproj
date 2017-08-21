@@ -15,6 +15,7 @@
 		3753BB231F48AC2800EBD7CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3753BB211F48AC2800EBD7CD /* LaunchScreen.storyboard */; };
 		3753BB2E1F48AC2800EBD7CD /* PlayLocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753BB2D1F48AC2800EBD7CD /* PlayLocationServiceTests.swift */; };
 		3753BB391F48AC2800EBD7CD /* PlayLocationServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753BB381F48AC2800EBD7CD /* PlayLocationServiceUITests.swift */; };
+		3753BB481F48AC5C00EBD7CD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3753BB471F48AC5C00EBD7CD /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3753BB341F48AC2800EBD7CD /* PlayLocationServiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayLocationServiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3753BB381F48AC2800EBD7CD /* PlayLocationServiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayLocationServiceUITests.swift; sourceTree = "<group>"; };
 		3753BB3A1F48AC2800EBD7CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3753BB471F48AC5C00EBD7CD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3753BB481F48AC5C00EBD7CD /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +86,7 @@
 				3753BB2C1F48AC2800EBD7CD /* PlayLocationServiceTests */,
 				3753BB371F48AC2800EBD7CD /* PlayLocationServiceUITests */,
 				3753BB131F48AC2800EBD7CD /* Products */,
+				3753BB461F48AC5C00EBD7CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +130,14 @@
 				3753BB3A1F48AC2800EBD7CD /* Info.plist */,
 			);
 			path = PlayLocationServiceUITests;
+			sourceTree = "<group>";
+		};
+		3753BB461F48AC5C00EBD7CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3753BB471F48AC5C00EBD7CD /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
