@@ -19,5 +19,6 @@ extension LocationAnnotation {
     @NSManaged public var annotation: NSObject?
     @NSManaged public var identifier: String?
     @NSManaged public var localUpdate: NSDate?
+    @NSManaged public var title: String?
 
 }

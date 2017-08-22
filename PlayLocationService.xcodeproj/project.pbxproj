@@ -128,7 +128,6 @@
 				3753BB1F1F48AC2800EBD7CD /* Assets.xcassets */,
 				3753BB211F48AC2800EBD7CD /* LaunchScreen.storyboard */,
 				3753BB241F48AC2800EBD7CD /* Info.plist */,
-				3753BB1C1F48AC2800EBD7CD /* PlayLocationService.xcdatamodeld */,
 				3753BB491F4A8EAE00EBD7CD /* TaskLocation.swift */,
 				3753BB5C1F4B357600EBD7CD /* Constant.swift */,
 			);
@@ -174,6 +173,7 @@
 		3753BB501F4B331300EBD7CD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3753BB1C1F48AC2800EBD7CD /* PlayLocationService.xcdatamodeld */,
 				3753BB5A1F4B33D100EBD7CD /* CoreDataStack.swift */,
 				3753BB591F4B336000EBD7CD /* NSManageObject */,
 			);
@@ -600,6 +600,7 @@
 				3753BB3F1F48AC2800EBD7CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3753BB401F48AC2800EBD7CD /* Build configuration list for PBXNativeTarget "PlayLocationServiceTests" */ = {
 			isa = XCConfigurationList;
@@ -608,6 +609,7 @@
 				3753BB421F48AC2800EBD7CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3753BB431F48AC2800EBD7CD /* Build configuration list for PBXNativeTarget "PlayLocationServiceUITests" */ = {
 			isa = XCConfigurationList;
@@ -616,6 +618,7 @@
 				3753BB451F48AC2800EBD7CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -11,34 +11,31 @@ import MapKit
 
 class TaskLocation: NSObject, NSCoding, MKAnnotation {
     let title: String?
-    let locationName: String
+    let subtitle: String?
     let coordinate: CLLocationCoordinate2D
     
-    var subtitle: String? {
-        return locationName
-    }
     
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
         self.title = title
-        self.locationName = locationName
+        self.subtitle = subtitle
         self.coordinate = coordinate
     }
     
     init(mapAnnotation: MKAnnotation) {
         self.title = mapAnnotation.title!
-        self.locationName = mapAnnotation.subtitle!!
+        self.subtitle = mapAnnotation.subtitle!
         self.coordinate = mapAnnotation.coordinate
     }
     
     convenience override init() {
-        self.init(title: "", locationName: "", coordinate: CLLocationCoordinate2D())
+        self.init(title: "", subtitle: "", coordinate: CLLocationCoordinate2D())
     }
     
     // MARK: - NSCoding protocol
     // So that we could save this object as transformable in Core Data
     required init?(coder aDecoder: NSCoder) {
         title = aDecoder.decodeObject(forKey: "title") as? String
-        locationName = aDecoder.decodeObject(forKey: "locationName") as! String
+        subtitle = aDecoder.decodeObject(forKey: "subtitle") as! String
         let latitude = aDecoder.decodeObject(forKey: "latitude") as! CLLocationDegrees
         let longitude = aDecoder.decodeObject(forKey: "longitude") as! CLLocationDegrees
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -47,7 +44,7 @@ class TaskLocation: NSObject, NSCoding, MKAnnotation {
     func encode(with aCoder: NSCoder) {
         print("Try to save the following to core data: Title: \(title),  Lat: \(coordinate.latitude),  Lon: \(coordinate.longitude)")
         aCoder.encode(title, forKey: "title")
-        aCoder.encode(locationName, forKey: "locationName")
+        aCoder.encode(subtitle, forKey: "subtitle")
         aCoder.encode(coordinate.latitude as NSNumber, forKey: "latitude")
         aCoder.encode(coordinate.longitude as NSNumber, forKey: "longitude")
     }

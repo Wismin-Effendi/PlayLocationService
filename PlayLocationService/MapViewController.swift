@@ -159,6 +159,7 @@ extension MapViewController: MKMapViewDelegate {
         let locationAnnotation = LocationAnnotation(context: coreDataStack.managedContext)
         locationAnnotation.localUpdate = NSDate()
         locationAnnotation.identifier = UUID().uuidString
+        locationAnnotation.title = taskLocation.title
         locationAnnotation.annotation = taskLocation
         
         coreDataStack.saveContext()

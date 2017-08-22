@@ -41,8 +41,8 @@ class LocationListViewController: UITableViewController, TaskLocationDelegate {
     // MARK: - Helper 
     private func initializeFetchResultsController() {
         let fetchRequest: NSFetchRequest<LocationAnnotation> = LocationAnnotation.fetchRequest()
-        let localUpdateSort = NSSortDescriptor(key: #keyPath(LocationAnnotation.localUpdate), ascending: true)
-        fetchRequest.sortDescriptors = [localUpdateSort]
+        let titleSort = NSSortDescriptor(key: #keyPath(LocationAnnotation.title), ascending: true)
+        fetchRequest.sortDescriptors = [titleSort]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.managedContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         do {
